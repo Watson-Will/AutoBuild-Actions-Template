@@ -100,5 +100,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ImmortalWrt-Newifi-D2-64MB
-          path: immortalwrt/bin/targets/ramips/mt7621/immortalwrt-*-d-team_newifi-d2-*.bin
+          path: immortalwrt/bin/targets/ramips/mt7621/*newifi-d2*.bin
+          if-no-files-found: warn   # 可选：没文件也警告但不失败
           retention-days: 30
