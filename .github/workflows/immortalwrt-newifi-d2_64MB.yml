@@ -37,7 +37,7 @@ jobs:
           sed -i 's/32448k/65216k/g' target/linux/ramips/image/mt7621.mk
           echo "✅ DTS 和 MK 已修改为 64MB ROM"
 
-            - name: 生成 .config（目标设备 + 完整功能）
+      - name: 生成 .config（目标设备 + 完整功能）
         run: |
           cd immortalwrt
           cat > .config << 'EOF'
