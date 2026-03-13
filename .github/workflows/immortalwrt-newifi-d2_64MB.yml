@@ -62,7 +62,8 @@ jobs:
           CONFIG_PACKAGE_ip6tables-extra=y
           CONFIG_PACKAGE_kmod-ip6tables=y
           CONFIG_PACKAGE_odhcp6c=y
-          CONFIG_PACKAGE_odhcpd=y
+          CONFIG_PACKAGE_odhcpd-ipv6only=y
+          # CONFIG_PACKAGE_odhcpd is not set
 
           # USB 3.0（设备默认已包含 kmod-usb3）
           CONFIG_PACKAGE_kmod-usb3=y
