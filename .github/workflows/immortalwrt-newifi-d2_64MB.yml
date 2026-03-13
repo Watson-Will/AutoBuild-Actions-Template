@@ -96,10 +96,17 @@ jobs:
           cd immortalwrt
           make -j$(nproc) V=s
 
-      - name: 上传固件到 Actions 产物
+      - name: 检查固件是否生成 + 列出文件
+        run: |
+          cd immortalwrt
+          ls -lh bin/targets/ramips/mt7621/ || echo "目录不存在！"
+          find bin/targets/ramips/mt7621 -type f -name "*.bin" -o -name "sha256sums" || echo "没找到 .bin 文件"
+          echo "当前 .config 中 TARGET_PROFILE:"
+          grep CONFIG_TARGET_ramips_mt7621_d-team_newifi-d2 .config || echo "没选对设备"
+      - name: 上传整个 targets 目录（包含所有固件、sha256sums 等）
         uses: actions/upload-artifact@v4
         with:
-          name: ImmortalWrt-Newifi-D2-64MB
-          path: immortalwrt/bin/targets/ramips/mt7621/*newifi-d2*.bin
-          if-no-files-found: warn   # 可选：没文件也警告但不失败
+          name: ImmortalWrt-Newifi-D2-Full-Bin
+          path: immortalwrt/bin/targets/ramips/mt7621/
+          if-no-files-found: warn
           retention-days: 30
